@@ -1,0 +1,16 @@
+name: seaweedfs-lakehouse
+
+services:
+  seaweedfs:                            # S3 storage + built-in Iceberg REST catalog
+    image: chrislusf/seaweedfs:latest
+    command: mini -dir=/data
+    environment:
+      S3_TABLE_BUCKET: warehouse        # pre-creates the Iceberg table bucket
+    ports:
+      - "8333:8333"                     # S3 API
+      - "8181:8181"                     # Iceberg REST catalog
+    volumes:
+      - seaweed-data:/data
+
+volumes:
+  seaweed-data:
