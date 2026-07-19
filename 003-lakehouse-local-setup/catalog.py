@@ -6,8 +6,5 @@ CATALOG_CONFIG = {
     "s3.endpoint": "http://localhost:8333",  # SeaweedFS S3 API
     "s3.region": "us-east-1",
     "s3.anonymous": "true",                  # send unsigned requests (allow-all mode)
-    # pyarrow's S3 client uploads with HTTP chunked transfer encoding, which
-    # SeaweedFS's allow-all gateway stores verbatim and corrupts. Route writes
-    # through fsspec/s3fs, which sends a plain Content-Length upload instead.
     "py-io-impl": "pyiceberg.io.fsspec.FsspecFileIO",
 }
