@@ -1,0 +1,72 @@
+# Run a Full Lakehouse on Your Laptop — SeaweedFS edition
+# SeaweedFS (S3 storage + built-in Iceberg REST catalog) + Spark (write) + Trino (read)
+#
+# Usage:
+#   docker compose up -d
+#   docker compose down          # stop, keep data
+#   docker compose down -v       # stop and wipe data
+name: seaweedfs-lakehouse
+
+services:
+  # ----------------------------------------------------------------------
+  # SeaweedFS — the lake AND the brain. `weed mini` runs an all-in-one dev
+  # server: S3 API on 8333 and the built-in Iceberg REST catalog on 8181.
+  # S3_TABLE_BUCKET pre-creates the Iceberg table bucket "warehouse".
+  # ----------------------------------------------------------------------
+  seaweedfs:
+    image: chrislusf/seaweedfs:latest
+    container_name: seaweedfs
+    command: mini -dir=/data
+    # No AWS_* keys => SeaweedFS S3 + Iceberg REST run in unauthenticated
+    # "Allow All" dev mode. Simple for local; do not do this in production.
+    environment:
+      S3_TABLE_BUCKET: warehouse
+    ports:
+      - "8333:8333"     # S3 API
+      - "8181:8181"     # Iceberg REST catalog
+      - "9333:9333"     # master UI
+      - "23646:23646"   # admin UI
+    volumes:
+      - seaweed-data:/data
+    networks:
+      - lakehouse
+
+  # ----------------------------------------------------------------------
+  # Trino — the SQL query engine (fast, interactive reads).
+  # ----------------------------------------------------------------------
+  trino:
+    image: trinodb/trino:latest
+    container_name: trino
+    depends_on:
+      - seaweedfs
+    ports:
+      - "8080:8080"     # Trino UI + JDBC -> http://localhost:8080
+    volumes:
+      - ./trino/etc/catalog:/etc/trino/catalog:ro
+    networks:
+      - lakehouse
+
+  # ----------------------------------------------------------------------
+  # Spark + Iceberg — the compute engine (writes, updates, maintenance).
+  # Kept alive so you can `docker compose exec spark-iceberg spark-sql ...`.
+  # ----------------------------------------------------------------------
+  spark-iceberg:
+    image: tabulario/spark-iceberg:latest
+    container_name: spark-iceberg
+    depends_on:
+      - seaweedfs
+    environment:
+      # S3FileIO still wants a region even in anonymous mode.
+      AWS_REGION: us-east-1
+    entrypoint: ["/bin/sh", "-c", "sleep infinity"]
+    volumes:
+      - ./spark/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf:ro
+      - ./sql:/home/iceberg/sql:ro
+    networks:
+      - lakehouse
+
+volumes:
+  seaweed-data:
+
+networks:
+  lakehouse:
