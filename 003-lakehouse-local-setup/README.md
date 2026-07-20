@@ -30,7 +30,7 @@ docker compose down -v        # stop and wipe
 `read.py` prints the current rows and then the same query `AT (VERSION => <first_snapshot>)`,
 so after `churn.py` you'll see the deleted order (Bob, #2) alive again in the past.
 
-## Gotchas baked into the code
+## Important Notes
 
 - **`py-io-impl` = FsspecFileIO is required.** pyiceberg's default pyarrow FileIO
   uploads with HTTP chunked transfer encoding, and SeaweedFS's allow-all gateway
