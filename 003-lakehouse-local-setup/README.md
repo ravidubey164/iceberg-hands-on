@@ -7,7 +7,7 @@ DuckDB to read. No JVM, no Spark, no Trino.
 Verified on SeaweedFS 4.39, pyiceberg 0.11.1, duckdb 1.5.4, s3fs 2026.6.0,
 pyarrow 25.0.0.
 
-For the Spark + Trino version of the same setup, see [`../iceberg-seaweedfs`](../iceberg-seaweedfs).
+For the Spark + Trino version of the same setup, see [`../iceberg-spark-trino`](../iceberg-spark-trino).
 
 ## Prerequisites
 
