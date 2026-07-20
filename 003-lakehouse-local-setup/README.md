@@ -21,7 +21,7 @@ docker compose up -d          # start SeaweedFS (S3 on :8333, Iceberg REST on :8
 
 python write.py               # Step 3: create the table + append 4 orders
 python read.py                # Step 4: DuckDB reads the current table
-python churn.py               # Step 5: a new order (append) + a delete (overwrite)
+python update_orders.py       # Step 5: a new order (append) + a delete (overwrite)
 python read.py                # Step 5: current rows + time travel to the first snapshot
 
 docker compose down -v        # stop and wipe
