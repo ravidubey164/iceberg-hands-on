@@ -1,0 +1,4 @@
+requests
+pyiceberg[pyarrow,glue]
+boto3>=1.35
+python-dotenv
