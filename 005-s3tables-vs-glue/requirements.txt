@@ -1,0 +1,6 @@
+requests
+pyiceberg[pyarrow,glue]
+boto3
+duckdb
+pandas
+python-dotenv
