@@ -1,0 +1,21 @@
+family,axis,point,self_total,s3t_total,cheaper,self_compaction,self_retention_orphan,self_storage,self_requests,s3t_compaction,s3t_monitoring,s3t_storage,s3t_requests
+volume x size,small,1x (this run),2.94,0.04,S3 Tables,1.71,1.14,0.02,0.07,0.02,0.0,0.01,0.0
+volume x size,small,100x,168.54,3.46,S3 Tables,158.38,1.14,2.3,6.72,1.64,0.18,1.32,0.32
+volume x size,small,10k x,16740.86,346.08,S3 Tables,15837.72,1.14,230.0,672.0,163.58,18.0,132.5,32.0
+volume x size,small,1M x,1673973.04,34607.64,S3 Tables,1583771.9,1.14,23000.0,67200.0,16357.64,1800.0,13250.0,3200.0
+volume x size,medium,1x (this run),7.91,1.85,S3 Tables,1.71,1.14,2.3,2.76,0.02,0.18,1.32,0.32
+volume x size,medium,100x,665.31,184.46,S3 Tables,158.17,1.14,230.0,276.0,1.96,18.0,132.5,32.0
+volume x size,medium,10k x,66418.33,18445.72,S3 Tables,15817.19,1.14,23000.0,27600.0,195.72,1800.0,13250.0,3200.0
+volume x size,medium,1M x,6641720.18,1844571.78,S3 Tables,1581719.04,1.14,2300000.0,2760000.0,19571.78,180000.0,1325000.0,320000.0
+volume x size,large,1x (this run),203.67,73.05,S3 Tables,1.69,1.14,92.0,108.84,0.05,7.2,53.0,12.8
+volume x size,large,100x,20241.26,7305.13,S3 Tables,156.12,1.14,9200.0,10884.0,5.13,720.0,5300.0,1280.0
+volume x size,large,10k x,2024013.04,730512.51,S3 Tables,15611.9,1.14,920000.0,1088400.0,512.51,72000.0,530000.0,128000.0
+volume x size,large,1M x,202401191.54,73051251.2,S3 Tables,1561190.4,1.14,92000000.0,108840000.0,51251.2,7200000.0,53000000.0,12800000.0
+read/write ratio,medium/100x,0 reads/mo,393.31,152.46,S3 Tables,158.17,1.14,230.0,4.0,1.96,18.0,132.5,0.0
+read/write ratio,medium/100x,"1,000 reads/mo",665.31,184.46,S3 Tables,158.17,1.14,230.0,276.0,1.96,18.0,132.5,32.0
+read/write ratio,medium/100x,"100,000 reads/mo",27593.31,3352.46,S3 Tables,158.17,1.14,230.0,27204.0,1.96,18.0,132.5,3200.0
+read/write ratio,medium/100x,"10,000,000 reads/mo",2720393.31,320152.46,S3 Tables,158.17,1.14,230.0,2720004.0,1.96,18.0,132.5,320000.0
+table count,medium/100x,1 tables,665.31,184.46,S3 Tables,158.17,1.14,230.0,276.0,1.96,18.0,132.5,32.0
+table count,medium/100x,10 tables,6653.12,1844.57,S3 Tables,1581.72,11.4,2300.0,2760.0,19.57,180.0,1325.0,320.0
+table count,medium/100x,100 tables,66531.19,18445.72,S3 Tables,15817.19,114.0,23000.0,27600.0,195.72,1800.0,13250.0,3200.0
+table count,medium/100x,1000 tables,665311.9,184457.18,S3 Tables,158171.9,1140.0,230000.0,276000.0,1957.18,18000.0,132500.0,32000.0
