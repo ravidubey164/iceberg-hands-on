@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+*.ndjson
+*.log
+invoke_out.json
+STATUS.md
+COST_MODEL.md
+cost_model.csv
+build/
+.docker-ci/
